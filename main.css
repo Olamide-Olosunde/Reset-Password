@@ -1,0 +1,109 @@
+/*OG*/
+/* sample element */
+/*  
+sampleelement[data-theme="dark"] {
+    background-color: var(--background-dark);
+    color: var(--background-dark);
+}
+*/
+
+/* html */
+html{
+    background-color: var(--header-bg-color);
+}
+
+/* body */
+body{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0px;
+}
+/* /body */
+
+main{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+}
+
+main > p{
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 25px;
+    
+}
+
+button{
+    background-color: var(--button-color);
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: var(--text-color);
+    font-size: 13.3px;
+    
+    border-width: 0px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+#email{
+    margin-bottom: 10px;
+    border-radius: 8px;
+
+    border-width: 0.2px;
+    border-color: var(--text-color);
+    border-style: solid;
+
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    height: 33.3px;
+}
+#email:focus{
+    outline: none;
+}
+#email::selection{
+    background-color: #CECECE;
+}
+
+
+/* root */
+:root {
+    --bg-color: #A6A6A8;
+    --header-bg-color: #A6A6A8;
+    --footer-bg-color: #A6A6A8;
+    --text-color: #272635;
+    --text-sec-color: #B1E5F2;
+    --navigator-bg-color: ;
+    
+    --navtitle-color: ;
+    --link-color: #B1E5F2;
+    --link-color-hover: #B1E5F2;
+    --shadow-color: #9a9999;
+    
+    --button-color: #B1E5F2;
+}
+[data-theme="dark"]{
+    --bg-color: #004f6d;
+    --header-bg-color: #0c3b57;
+    --footer-bg-color: #0c3b57;
+    --text-color: #ffffff;
+    --text-sec-color: #c7cdcf;
+    --navigator-bg-color: #FF9966;
+
+    --navtitle-color: rgb(51, 143, 159);
+    --link-color: #ffffff;
+    --link-color-hover: #ffffff;
+    --header-link-color: #ffffff;
+    --shadow-color: #000000;
+
+    --button-color: linear-gradient(to right, #09405c, var(--bg-color) );
+}
