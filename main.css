@@ -73,6 +73,10 @@ form{
 #email::selection{
     background-color: #CECECE;
 }
+#email:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-color) inset !important;
+  -webkit-text-fill-color: var(--text-color) !important;
+}
 
 
 /* root */
@@ -91,7 +95,7 @@ form{
     
     --button-color: #B1E5F2;
 }
-[data-theme="dark"]{
+/* [data-theme="dark"]{
     --bg-color: #004f6d;
     --header-bg-color: #0c3b57;
     --footer-bg-color: #0c3b57;
@@ -106,4 +110,4 @@ form{
     --shadow-color: #000000;
 
     --button-color: linear-gradient(to right, #09405c, var(--bg-color) );
-}
+} */
