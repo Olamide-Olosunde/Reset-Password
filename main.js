@@ -134,12 +134,12 @@ function validateEmail(){
         {
             err.innerText = "";
             err.style.display = "none";
-            Password_Reset( email );
+            Password_Reset_Page_Redirect( email );
         }
 
     });
 }
-async function Password_Reset( userEmail ){
+async function Password_Reset_Page_Redirect( userEmail ){
     await supabase.auth.resetPasswordForEmail( userEmail , {
         redirectTo: 'https://olamide-olosunde.github.io/Reset-Password/Change_Password.html',
       })
@@ -198,8 +198,39 @@ function validate(){
         {
             error.style.display = "none";
             error.innerText = "";
-            let newPassword = password.value;//recheck this: where to declare the variable
+            resetPassword( password.value );
         }
 
     });
 }
+
+
+
+const supabase = supabase.createClient(
+'https://treegevvjjvsvwtjjxlx.supabase.co',
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRyZWVnZXZ2amp2c3Z3dGpqeGx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3MTE2MDgsImV4cCI6MjA2MzI4NzYwOH0.G2hGE3my0I2dGVSJxy2TlNnaj2jiUgS799VrP5s3cII'
+);
+
+async function resetPassword( passedPassword ) {
+    const token = new URLSearchParams(window.location.search).get('token');
+    // const newPassword = document.getElementById('newPassword').value;
+    const newPassword = passedPassword;
+
+    if (!token) {
+      document.getElementById('message').textContent = 'Invalid reset link';
+      return;
+    }
+    
+    const { error } = await supabase.auth.updateUser({
+      password: newPassword
+    }, {
+      accessToken: token
+    });
+    
+    const messageEl = document.getElementById('message');
+    if (error) {
+      messageEl.textContent = 'Error: ' + error.message;
+    } else {
+      messageEl.textContent = 'Password updated successfully! You can now close this page.';
+    }
+  }
