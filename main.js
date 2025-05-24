@@ -111,6 +111,40 @@
 
 
 
+function validateEmail(){
+    let email = document.getElementById('email');
+    let err = document.getElementById('emailError');
+    let form = document.getElementById('emailForm');
+    
+    form.addEventListener("submit", event=>{
+        event.preventDefault();
+
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if( !email.value )
+        {
+            //enter an email
+            err.innerText = "Enter a email.";
+            err.style.display = "flex";
+        } else if( !regex.test(email.value) )
+        {
+            //enter a valid email
+            err.innerText = "Enter a valid email.";
+            err.style.display = "flex";
+        } else
+        {
+            err.innerText = "";
+            err.style.display = "none";
+            Password_Reset( email );
+        }
+
+    });
+}
+async function Password_Reset( userEmail ){
+    await supabase.auth.resetPasswordForEmail( userEmail , {
+        redirectTo: 'https://olamide-olosunde.github.io/Reset-Password/Change_Password.html',
+      })
+}
+
 //Change Password form validation
 function validate(){
     let password = document.getElementById('Password');
@@ -164,34 +198,7 @@ function validate(){
         {
             error.style.display = "none";
             error.innerText = "";
-        }
-
-    });
-}
-
-function validateEmail(){
-    let email = document.getElementById('email');
-    let err = document.getElementById('emailError');
-    let form = document.getElementById('emailForm');
-    
-    form.addEventListener("submit", event=>{
-        event.preventDefault();
-
-        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        if( !email.value )
-        {
-            //enter an email
-            err.innerText = "Enter a email.";
-            err.style.display = "flex";
-        } else if( !regex.test(email.value) )
-        {
-            //enter a valid email
-            err.innerText = "Enter a valid email.";
-            err.style.display = "flex";
-        } else
-        {
-            err.innerText = "";
-            err.style.display = "none";
+            let newPassword = password.value;//recheck this: where to declare the variable
         }
 
     });
