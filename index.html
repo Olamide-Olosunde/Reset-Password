@@ -6,18 +6,21 @@
     <title>Reset Password</title>
 
     <link rel="stylesheet" href="main.css">
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
 </head>
 <body>
     <main>
         <p>Reset Password</p>
-        <form>
+        <form id="emailForm" novalidate>
             <!-- <label for="email">Enter your email</label> -->
-            <input type="text" name="email" id="email" placeholder="Email"/>
+            <input type="text" name="email" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
 
             <span class="error" id="emailError"></span>
 
-            <button>Send Code</button>
+            <button onclick="validateEmail()">Send Code</button>
+            
+            <!--CHECK THE HREF!-->
+            <!-- <a href="Change_Password.html">Change Passwd</a> -->
         </form>
     </main>
 </body>

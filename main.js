@@ -108,3 +108,91 @@
 //     localStorage.setItem('theme', newTheme);
 
 // }
+
+
+
+//Change Password form validation
+function validate(){
+    let password = document.getElementById('Password');
+    let re_enter_password = document.getElementById('Re_enter_Password');
+    let error = document.getElementById('PasswordError');
+
+    let form = document.getElementById('form');
+    
+    // error.style.display = "none";
+    form.addEventListener("submit", event=>{
+        event.preventDefault();
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{10,}$/;
+
+        if( password.value != re_enter_password.value )
+        {
+            //don't match
+            error.style.display = "flex";
+            error.innerText = "Passwords don't match.";
+        } else if( !regex.test(password.value) )//not contain required characters
+        {
+            //less than 10 chars
+            if( password.value.length < 10 )
+                document.getElementById('req1').style.color = "#D94E4E";//W color
+            else
+                document.getElementById('req1').style.color = "#272635";
+
+            //Must contain at least 1 lowercase letter
+            if( !/[a-z]/.test(password.value) )
+                document.getElementById('req2').style.color = "#D94E4E";
+            else
+                document.getElementById('req2').style.color = "#272635";
+
+            //>Must contain at least 1 uppercase letter
+            if( !/[A-Z]/.test(password.value) )
+                document.getElementById('req3').style.color = "#D94E4E";
+            else
+                document.getElementById('req3').style.color = "#272635";
+
+            //Must contain at least 1 numerical digit
+            if( !/\d/.test(password.value) )
+                document.getElementById('req4').style.color = "#D94E4E";
+            else
+                document.getElementById('req4').style.color = "#272635";
+
+            //Must contain at least 1 symbol
+            if( !/[^a-zA-Z0-9]/.test(password.value) )
+                document.getElementById('req5').style.color = "#D94E4E";
+            else
+                document.getElementById('req5').style.color = "#272635";
+        } else
+        {
+            error.style.display = "none";
+            error.innerText = "";
+        }
+
+    });
+}
+
+function validateEmail(){
+    let email = document.getElementById('email');
+    let err = document.getElementById('emailError');
+    let form = document.getElementById('emailForm');
+    
+    form.addEventListener("submit", event=>{
+        event.preventDefault();
+
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if( !email.value )
+        {
+            //enter an email
+            err.innerText = "Enter a email.";
+            err.style.display = "flex";
+        } else if( !regex.test(email.value) )
+        {
+            //enter a valid email
+            err.innerText = "Enter a valid email.";
+            err.style.display = "flex";
+        } else
+        {
+            err.innerText = "";
+            err.style.display = "none";
+        }
+
+    });
+}

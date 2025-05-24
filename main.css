@@ -49,13 +49,16 @@ button{
     
     border-width: 0px;
 }
+button:active{
+    
+}
 
 form{
     display: flex;
     flex-direction: column;
     width: 80%;
 }
-#email{
+input{
     margin-bottom: 10px;
     border-radius: 8px;
 
@@ -67,15 +70,45 @@ form{
     background-color: var(--bg-color);
     height: 33.3px;
 }
-#email:focus{
+input:focus{
     outline: none;
 }
-#email::selection{
+input::selection{
     background-color: #CECECE;
 }
-#email:-webkit-autofill{
+input:-webkit-autofill{
   -webkit-box-shadow: 0 0 0 1000px var(--bg-color) inset !important;
   -webkit-text-fill-color: var(--text-color) !important;
+}
+.error{
+    border: 2px solid red;
+    /* font-size: 12pt; */
+    display: none;
+    
+    background-color: lightcoral;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    margin-top: 0px;
+    font-size: 13.3px;
+}
+#emailError{
+    margin-bottom: 25px;
+}
+
+.Password_Rules{
+    color: #4A4858;
+    font-size: 13.3px;
+}
+.Password_Rules > p{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+#tabbed_Password_Rules{
+    list-style-type: none;
+    padding-top: 0;
+    margin-top: 0;
+    padding-left: 25px;
 }
 
 
