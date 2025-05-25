@@ -227,7 +227,7 @@ function validate(){
 
 async function resetPassword( passedPassword ) {
 
-    await supabase.auth.updateUser({ password: passedPassword })
+    await supabaseClient.auth.updateUser({ password: passedPassword })
     // const token = new URLSearchParams(window.location.search).get('token');
     // // const newPassword = document.getElementById('newPassword').value;
     // const newPassword = passedPassword;
