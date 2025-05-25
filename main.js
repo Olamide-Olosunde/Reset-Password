@@ -109,8 +109,12 @@
 
 // }
 
-
-
+// document.addEventListener('DOMContentLoaded', () => {
+    
+// })
+const supabaseClient = supabase.createClient(
+    'https://treegevvjjvsvwtjjxlx.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRyZWVnZXZ2amp2c3Z3dGpqeGx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3MTE2MDgsImV4cCI6MjA2MzI4NzYwOH0.G2hGE3my0I2dGVSJxy2TlNnaj2jiUgS799VrP5s3cII'
+);
 function validateEmail(){
     let email = document.getElementById('email');
     let err = document.getElementById('emailError');
@@ -134,15 +138,26 @@ function validateEmail(){
         {
             err.innerText = "";
             err.style.display = "none";
-            Password_Reset_Page_Redirect( email );
+            Password_Reset_Page_Redirect( email.value );
         }
 
     });
 }
-async function Password_Reset_Page_Redirect( userEmail ){
-    await supabase.auth.resetPasswordForEmail( userEmail , {
+function Password_Reset_Page_Redirect( userEmail ){
+    console.log(userEmail);
+    const {error} = supabaseClient.auth.resetPasswordForEmail( userEmail , {
         redirectTo: 'https://olamide-olosunde.github.io/Reset-Password/Change_Password.html',
-      })
+    })
+
+    const messageEl = document.getElementById('message')
+    if(error)
+    {
+        // messageEl.textContent = `Error: ${error.message}`;
+        alert(`Error: ${error.message}`);
+    } else {
+        // messageEl.textContent = `Reset link sent to ${userEmail}`;
+        alert(`Reset link sent to ${userEmail}`);
+    }
 }
 
 //Change Password form validation
@@ -165,6 +180,9 @@ function validate(){
             error.innerText = "Passwords don't match.";
         } else if( !regex.test(password.value) )//not contain required characters
         {
+            error.style.display = "none";
+            error.innerText = "";
+
             //less than 10 chars
             if( password.value.length < 10 )
                 document.getElementById('req1').style.color = "#D94E4E";//W color
@@ -206,10 +224,6 @@ function validate(){
 
 
 
-const supabase = supabase.createClient(
-'https://treegevvjjvsvwtjjxlx.supabase.co',
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRyZWVnZXZ2amp2c3Z3dGpqeGx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3MTE2MDgsImV4cCI6MjA2MzI4NzYwOH0.G2hGE3my0I2dGVSJxy2TlNnaj2jiUgS799VrP5s3cII'
-);
 
 async function resetPassword( passedPassword ) {
     const token = new URLSearchParams(window.location.search).get('token');
@@ -221,7 +235,7 @@ async function resetPassword( passedPassword ) {
       return;
     }
     
-    const { error } = await supabase.auth.updateUser({
+    const { error } = await supabaseClient.auth.updateUser({
       password: newPassword
     }, {
       accessToken: token

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
 
+    <script src="https://unpkg.com/@supabase/supabase-js@2" defer></script>
     <link rel="stylesheet" href="main.css">
     <script src="main.js" defer></script>
-    <script src="https://unpkg.com/@supabase/supabase-js@2" defer></script>
 </head>
 <body>
     <main>
@@ -19,7 +19,7 @@
             <span class="error" id="emailError"></span>
 
             <button onclick="validateEmail()">Send Code</button>
-            
+            <p id="message"></p>
             <!--CHECK THE HREF!-->
             <!-- <a href="Change_Password.html">Change Passwd</a> -->
         </form>
