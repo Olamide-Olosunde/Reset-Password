@@ -226,25 +226,27 @@ function validate(){
 
 
 async function resetPassword( passedPassword ) {
-    const token = new URLSearchParams(window.location.search).get('token');
-    // const newPassword = document.getElementById('newPassword').value;
-    const newPassword = passedPassword;
 
-    if (!token) {
-      document.getElementById('message').textContent = 'Invalid reset link';
-      return;
-    }
+    await supabase.auth.updateUser({ password: passedPassword })
+    // const token = new URLSearchParams(window.location.search).get('token');
+    // // const newPassword = document.getElementById('newPassword').value;
+    // const newPassword = passedPassword;
+
+    // if (!token) {
+    //   document.getElementById('message').textContent = 'Invalid reset link';
+    //   return;
+    // }
     
-    const { error } = await supabaseClient.auth.updateUser({
-      password: newPassword
-    }, {
-      accessToken: token
-    });
+    // const { error } = await supabaseClient.auth.updateUser({
+    //   password: newPassword
+    // }, {
+    //   accessToken: token
+    // });
     
-    const messageEl = document.getElementById('message');
-    if (error) {
-      messageEl.textContent = 'Error: ' + error.message;
-    } else {
-      messageEl.textContent = 'Password updated successfully! You can now close this page.';
-    }
+    // const messageEl = document.getElementById('message');
+    // if (error) {
+    //   messageEl.textContent = 'Error: ' + error.message;
+    // } else {
+    //   messageEl.textContent = 'Password updated successfully! You can now close this page.';
+    // }
   }
