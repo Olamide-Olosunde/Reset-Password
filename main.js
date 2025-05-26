@@ -233,6 +233,7 @@ async function resetPassword( passedPassword ) {
     if (!error) {
         // Redirect back to app using deep link
         window.location.href = 'exp://192.168.0.4:8081';
+        alert('Password updated successfully! You can now close this page.');
         
         // Fallback in case deep link fails
         // setTimeout(() => {
