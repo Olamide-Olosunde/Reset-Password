@@ -227,7 +227,20 @@ function validate(){
 
 async function resetPassword( passedPassword ) {
 
-    await supabaseClient.auth.updateUser({ password: passedPassword })
+    const {error} = await supabaseClient.auth.updateUser({ password: passedPassword });
+    console.log(error);
+
+    if (!error) {
+        // Redirect back to app using deep link
+        window.location.href = 'exp://192.168.0.4:8081';
+        
+        // Fallback in case deep link fails
+        // setTimeout(() => {
+        //   window.location.href = 'https://yourapp.com/download'; // Or your App Store link
+        // }, 500);
+    }
+    // console.log('Works');
+    
     // const token = new URLSearchParams(window.location.search).get('token');
     // // const newPassword = document.getElementById('newPassword').value;
     // const newPassword = passedPassword;
