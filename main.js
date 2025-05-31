@@ -232,13 +232,16 @@ async function resetPassword( passedPassword ) {
 
     if (!error) {
         // Redirect back to app using deep link
-        window.location.href = 'exp://192.168.0.4:8081';
+        window.location.href = 'exp://192.168.0.4:8081';//you'd have to change this to the actual apps URL upon production
         alert('Password updated successfully! You can now close this page.');
         
         // Fallback in case deep link fails
         // setTimeout(() => {
         //   window.location.href = 'https://yourapp.com/download'; // Or your App Store link
         // }, 500);
+    } else
+    {
+        alert(error.message);
     }
     // console.log('Works');
     
