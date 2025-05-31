@@ -227,43 +227,45 @@ function validate(){
 
 async function resetPassword( passedPassword ) {
 
-    const {error} = await supabaseClient.auth.updateUser({ password: passedPassword });
-    console.log(error);
+    //gotta get the session first. Maybe use a magic link?
+    // const {error} = await supabaseClient.auth.updateUser({ password: passedPassword });
+    // console.log(error);
 
-    if (!error) {
-        // Redirect back to app using deep link
-        window.location.href = 'exp://192.168.0.4:8081';//you'd have to change this to the actual apps URL upon production
-        alert('Password updated successfully! You can now close this page.');
+    // if (!error) {
+    //     // Redirect back to app using deep link
+    //     window.location.href = 'exp://192.168.0.4:8081';//you'd have to change this to the actual apps URL upon production
+    //     alert('Password updated successfully! You can now close this page.');
         
-        // Fallback in case deep link fails
-        // setTimeout(() => {
-        //   window.location.href = 'https://yourapp.com/download'; // Or your App Store link
-        // }, 500);
-    } else
-    {
-        alert(error.message);
-    }
-    // console.log('Works');
-    
-    // const token = new URLSearchParams(window.location.search).get('token');
-    // // const newPassword = document.getElementById('newPassword').value;
-    // const newPassword = passedPassword;
+    //     // Fallback in case deep link fails
+    //     // setTimeout(() => {
+    //     //   window.location.href = 'https://yourapp.com/download'; // Or your App Store link
+    //     // }, 500);
+    // } else
+    // {
+    //     alert(error.message);
+    // }
 
-    // if (!token) {
-    //   document.getElementById('message').textContent = 'Invalid reset link';
-    //   return;
-    // }
+    // console.log('Works');/////////////////
     
-    // const { error } = await supabaseClient.auth.updateUser({
-    //   password: newPassword
-    // }, {
-    //   accessToken: token
-    // });
+    const token = new URLSearchParams(window.location.search).get('token');
+    // const newPassword = document.getElementById('newPassword').value;
+    const newPassword = passedPassword;
+
+    if (!token) {
+      document.getElementById('message').textContent = 'Invalid reset link';
+      return;
+    }
     
-    // const messageEl = document.getElementById('message');
-    // if (error) {
-    //   messageEl.textContent = 'Error: ' + error.message;
-    // } else {
-    //   messageEl.textContent = 'Password updated successfully! You can now close this page.';
-    // }
+    const { error } = await supabaseClient.auth.updateUser({
+      password: newPassword
+    }, {
+      accessToken: token
+    });
+    
+    const messageEl = document.getElementById('message');
+    if (error) {
+      messageEl.textContent = 'Error: ' + error.message;
+    } else {
+      messageEl.textContent = 'Password updated successfully! You can now close this page.';
+    }
   }
