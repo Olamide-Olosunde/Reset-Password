@@ -226,6 +226,19 @@ function validate(){
 
 
 async function resetPassword( passedPassword ) {
+    let email = document.getElementById('email').value;
+    const messageEl = document.getElementById('message');
+
+    const { error } = await supabase.auth.updateUser({ password: passedPassword });
+
+    if (error) {
+      messageEl.textContent = 'Error: ' + error.message;
+    } else {
+      messageEl.textContent = 'Password updated successfully! You can now close this page.';
+      window.location.href = 'exp://192.168.0.4:8081';
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //gotta get the session first. Maybe use a magic link?
     // const {error} = await supabaseClient.auth.updateUser({ password: passedPassword });
@@ -245,27 +258,27 @@ async function resetPassword( passedPassword ) {
     //     alert(error.message);
     // }
 
-    // console.log('Works');/////////////////
+    // console.log('Works');////////////////////////////////////////////////////////////////////////////
     
-    const token = new URLSearchParams(window.location.search).get('token');
-    // const newPassword = document.getElementById('newPassword').value;
-    const newPassword = passedPassword;
+    // const token = new URLSearchParams(window.location.search).get('token');
+    // // const newPassword = document.getElementById('newPassword').value;
+    // const newPassword = passedPassword;
 
-    if (!token) {
-      document.getElementById('message').textContent = 'Invalid reset link';
-      return;
-    }
+    // if (!token) {
+    //   document.getElementById('message').textContent = 'Invalid reset link';
+    //   return;
+    // }
     
-    const { error } = await supabaseClient.auth.updateUser({
-      password: newPassword
-    }, {
-      accessToken: token
-    });
+    // const { error } = await supabaseClient.auth.updateUser({
+    //   password: newPassword
+    // }, {
+    //   accessToken: token
+    // });
     
-    const messageEl = document.getElementById('message');
-    if (error) {
-      messageEl.textContent = 'Error: ' + error.message;
-    } else {
-      messageEl.textContent = 'Password updated successfully! You can now close this page.';
-    }
+    // const messageEl = document.getElementById('message');
+    // if (error) {
+    //   messageEl.textContent = 'Error: ' + error.message;
+    // } else {
+    //   messageEl.textContent = 'Password updated successfully! You can now close this page.';
+    // }
   }
