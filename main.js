@@ -221,11 +221,15 @@ function validate(){
 
     });
 }
+//what it does: resetPassword( password.value );
 
 
 
 
 async function resetPassword( passedPassword ) {
+    // I think we're supposed to lead it back to the app, then updateUser 
+    // (OR actually just take their password there. That is, make a ChangePassword Screen and collect the user's new password there?) in the app.
+    // However, how do we redirect user && pass the password along?
     let email = document.getElementById('email').value;
     const messageEl = document.getElementById('message');
 

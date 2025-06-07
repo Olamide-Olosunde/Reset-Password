@@ -110,6 +110,10 @@ input:-webkit-autofill{
     margin-top: 0;
     padding-left: 25px;
 }
+a{
+    color: var(--text-color);
+    font-size: 16px;
+}
 
 
 /* root */
