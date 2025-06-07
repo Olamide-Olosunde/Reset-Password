@@ -266,25 +266,64 @@ async function resetPassword( passedPassword ) {
 
     // console.log('Works');////////////////////////////////////////////////////////////////////////////
     
-    const token = new URLSearchParams(window.location.search).get('token');
-    // const newPassword = document.getElementById('newPassword').value;
-    const newPassword = passedPassword;
+    // const token = new URLSearchParams(window.location.search).get('token');
+    // // const newPassword = document.getElementById('newPassword').value;
+    // const newPassword = passedPassword;
 
-    if (!token) {
-      document.getElementById('message').textContent = 'Invalid reset link';
-      return;
-    }
+    // if (!token) {
+    //   document.getElementById('message').textContent = 'Invalid reset link';
+    //   return;
+    // }
     
-    const { error } = await supabaseClient.auth.updateUser({
-      password: newPassword
-    }, {
-      accessToken: token
-    });
+    // const { error } = await supabaseClient.auth.updateUser({
+    //   password: newPassword
+    // }, {
+    //   accessToken: token
+    // });
     
-    const messageEl = document.getElementById('message');
-    if (error) {
-      messageEl.textContent = 'Error: ' + error.message;
-    } else {
-      messageEl.textContent = 'Password updated successfully! You can now close this page.';
-    }
+    // const messageEl = document.getElementById('message');
+    // if (error) {
+    //   messageEl.textContent = 'Error: ' + error.message;
+    // } else {
+    //   messageEl.textContent = 'Password updated successfully! You can now close this page.';
+    // }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    async function resetPassword(passedPassword) {
+        // Extract token from URL
+        const token = new URLSearchParams(window.location.search).get('token');
+        const newPassword = passedPassword;
+      
+        if (!token) {
+          document.getElementById('message').textContent = 'Invalid reset link: Missing token';
+          return;
+        }
+      
+        try {
+          // First verify the token and establish a session
+          const { error: verifyError } = await supabaseClient.auth.verifyOtp({
+            type: 'recovery',
+            token_hash: token,
+          });
+      
+          if (verifyError) {
+            throw verifyError;
+          }
+      
+          // Now update the password (user will have a session)
+          const { error: updateError } = await supabaseClient.auth.updateUser({
+            password: newPassword
+          });
+      
+          if (updateError) {
+            throw updateError;
+          }
+      
+          document.getElementById('message').textContent = 'Password updated successfully!';
+        } catch (error) {
+          console.error('Password reset error:', error);
+          document.getElementById('message').textContent = `Error: ${error.message}`;
+        }
+      }
   }
