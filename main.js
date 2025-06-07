@@ -237,6 +237,7 @@ async function resetPassword( passedPassword ) {
 
     if (error) {
       messageEl.textContent = 'Error: ' + error.message;
+      alert(error.message);
     } else {
       messageEl.textContent = 'Password updated successfully! You can now close this page.';
       window.location.href = 'exp://192.168.0.4:8081';
