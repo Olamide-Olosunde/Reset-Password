@@ -290,7 +290,7 @@ async function resetPassword( passedPassword ) {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    async function resetPassword(passedPassword) {
+    // async function resetPassword(passedPassword) {
         // Extract token from URL
         const token = new URLSearchParams(window.location.search).get('token');
         const newPassword = passedPassword;
@@ -325,5 +325,5 @@ async function resetPassword( passedPassword ) {
           console.error('Password reset error:', error);
           document.getElementById('message').textContent = `Error: ${error.message}`;
         }
-      }
+    //   }
   }
