@@ -227,6 +227,54 @@ function validate(){
 
 
 async function resetPassword( passedPassword ) {
+
+    const { data, error } = await supabase.auth.getSession();
+
+    if( error )
+    {
+        alert(error.message);
+    }
+
+    const { passwdData, passwdError } = await supabase.auth.updateUser({ password: passedPassword });
+    if( passwdError )
+    {
+        alert(passwdError.message);
+    } else
+    alert('Password Changed successfully!');
+    
+
+    //Actually Change Password is supposed to be a settings thing that the user does when they're already signed in...
+    //What we're supposed to do is resetPasswordForEmail() --as already done before now,-- then verifyOtp()
+
+    // const { data, error } = await supabase.auth.verifyOtp({ token_hash: tokenHash, type: 'email'});
+
+    // For password reset via email link
+    // async function handlePasswordReset(newPassword) {
+    // Get token from URL (different from change password)
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const token = urlParams.get('token');
+    
+    // if (!token) {
+    //   return { error: { message: 'Missing token in URL' } };
+    // }
+  
+    // // First verify the token to establish session
+    // const { error: verifyError } = await supabase.auth.verifyOtp({
+    //   type: 'recovery',
+    //   token
+    // });
+  
+    // if (verifyError) return { error: verifyError };
+  
+    // // Now update password
+    // const { error: updateError } = await supabase.auth.updateUser({
+    //   password: newPassword
+    // });
+  
+    // return { error: updateError };
+    // }
+
+
     // I think we're supposed to lead it back to the app, then updateUser 
     // (OR actually just take their password there. That is, make a ChangePassword Screen and collect the user's new password there?) in the app.
     // However, how do we redirect user && pass the password along?
@@ -290,40 +338,38 @@ async function resetPassword( passedPassword ) {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // async function resetPassword(passedPassword) {
-        // Extract token from URL
-        const token = new URLSearchParams(window.location.search).get('token');
-        const newPassword = passedPassword;
-      
-        if (!token) {
-          document.getElementById('message').textContent = 'Invalid reset link: Missing token';
-          return;
-        }
-      
-        try {
-          // First verify the token and establish a session
-          const { error: verifyError } = await supabaseClient.auth.verifyOtp({
-            type: 'recovery',
-            token_hash: token,
-          });
-      
-          if (verifyError) {
-            throw verifyError;
-          }
-      
-          // Now update the password (user will have a session)
-          const { error: updateError } = await supabaseClient.auth.updateUser({
-            password: newPassword
-          });
-      
-          if (updateError) {
-            throw updateError;
-          }
-      
-          document.getElementById('message').textContent = 'Password updated successfully!';
-        } catch (error) {
-          console.error('Password reset error:', error);
-          document.getElementById('message').textContent = `Error: ${error.message}`;
-        }
-    //   }
-  }
+    // Extract token from URL
+    // const token = new URLSearchParams(window.location.search).get('token');
+    // const newPassword = passedPassword;
+    
+    // if (!token) {
+    //     document.getElementById('message').textContent = 'Invalid reset link: Missing token';
+    //     return;
+    // }
+    
+    // try {
+    //     // First verify the token and establish a session
+    //     const { error: verifyError } = await supabaseClient.auth.verifyOtp({
+    //     type: 'recovery',
+    //     token_hash: token,
+    //     });
+    
+    //     if (verifyError) {
+    //     throw verifyError;
+    //     }
+    
+    //     // Now update the password (user will have a session)
+    //     const { error: updateError } = await supabaseClient.auth.updateUser({
+    //     password: newPassword
+    //     });
+    
+    //     if (updateError) {
+    //     throw updateError;
+    //     }
+    
+    //     document.getElementById('message').textContent = 'Password updated successfully!';
+    // } catch (error) {
+    //     console.error('Password reset error:', error);
+    //     document.getElementById('message').textContent = `Error: ${error.message}`;
+    // }
+}
