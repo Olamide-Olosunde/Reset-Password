@@ -228,17 +228,20 @@ function validate(){
 
 async function resetPassword( passedPassword ) {
 
+    const messageEl = document.getElementById('message');
     const { data, error } = await supabase.auth.getSession();
 
     if( error )
     {
-        alert(error.message);
+        // alert(error.message);
+        messageEl.textContent = 'Error: ' + error.message;
     }
 
     const { passwdData, passwdError } = await supabase.auth.updateUser({ password: passedPassword });
     if( passwdError )
     {
-        alert(passwdError.message);
+        // alert(passwdError.message);
+        messageEl.textContent = 'Error: ' + error.message;
     } else
     alert('Password Changed successfully!');
     
