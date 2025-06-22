@@ -238,6 +238,8 @@ async function resetPassword( passedPassword ) {
     const messageEl = document.getElementById('message');
     const { data, error } = await supabase.auth.getSession();
 
+    alert(data);
+
     if( error )
     {
         // alert(error.message);
