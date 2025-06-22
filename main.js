@@ -244,11 +244,11 @@ async function resetPassword( passedPassword ) {
         messageEl.textContent = 'Error: ' + error.message;
     }
 
-    const { passwdData, passwdError } = await supabase.auth.updateUser({ password: passedPassword });
+    const { data: passwdData, error: passwdError } = await supabase.auth.updateUser({ password: passedPassword });
     if( passwdError )
     {
         // alert(passwdError.message);
-        messageEl.textContent = 'Error: ' + error.message;
+        messageEl.textContent = 'Error: ' + passwdError.message;
     } else
     alert('Password Changed successfully!');
     
