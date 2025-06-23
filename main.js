@@ -165,8 +165,8 @@ function validateEmail(){
     });
 }
 function Password_Reset_Page_Redirect( userEmail ){
-    console.log(userEmail);
-    const {error} = supabaseClient.auth.resetPasswordForEmail( userEmail , {
+    // console.log(userEmail);
+    const {error} = supabase.auth.resetPasswordForEmail( userEmail , {
         redirectTo: 'https://olamide-olosunde.github.io/Reset-Password/Change_Password.html',
     })
 
@@ -321,7 +321,7 @@ async function resetPassword( passedPassword ) {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //gotta get the session first. Maybe use a magic link?
-    // const {error} = await supabaseClient.auth.updateUser({ password: passedPassword });
+    // const {error} = await supabase.auth.updateUser({ password: passedPassword });
     // console.log(error);
 
     // if (!error) {
@@ -349,7 +349,7 @@ async function resetPassword( passedPassword ) {
     //   return;
     // }
     
-    // const { error } = await supabaseClient.auth.updateUser({
+    // const { error } = await supabase.auth.updateUser({
     //   password: newPassword
     // }, {
     //   accessToken: token
@@ -375,7 +375,7 @@ async function resetPassword( passedPassword ) {
     
     // try {
     //     // First verify the token and establish a session
-    //     const { error: verifyError } = await supabaseClient.auth.verifyOtp({
+    //     const { error: verifyError } = await supabase.auth.verifyOtp({
     //     type: 'recovery',
     //     token_hash: token,
     //     });
@@ -385,7 +385,7 @@ async function resetPassword( passedPassword ) {
     //     }
     
     //     // Now update the password (user will have a session)
-    //     const { error: updateError } = await supabaseClient.auth.updateUser({
+    //     const { error: updateError } = await supabase.auth.updateUser({
     //     password: newPassword
     //     });
     
