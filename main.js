@@ -1,3 +1,7 @@
+// require("dotenv").config();
+// import {} from 'dotenv/config';
+// console.log(process.env.API_KEY);
+
 //undecided on the dark theme color scheme, so will comment all this for now
 
 
@@ -112,11 +116,21 @@
 // document.addEventListener('DOMContentLoaded', () => {
     
 // })
-const supabaseClient = supabase.createClient(
-    'https://treegevvjjvsvwtjjxlx.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRyZWVnZXZ2amp2c3Z3dGpqeGx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3MTE2MDgsImV4cCI6MjA2MzI4NzYwOH0.G2hGE3my0I2dGVSJxy2TlNnaj2jiUgS799VrP5s3cII',
+// import * as supabase_js from "@supabase/supabase-js";
+
+const supabaseUrl = "https://treegevvjjvsvwtjjxlx.supabase.co"
+const supabaseAnonKey = 
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRyZWVnZXZ2amp2c3Z3dGpqeGx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3MTE2MDgsImV4cCI6MjA2MzI4NzYwOH0.G2hGE3my0I2dGVSJxy2TlNnaj2jiUgS799VrP5s3cII"
+
+// import { createClient } from "https://unpkg.com/@supabase/supabase-js@2";
+// import { createClient } from "@supabase/supabase-js@2";
+const supabase = window.supabase.createClient(
+    supabaseUrl, supabaseAnonKey,
+    //^ is safe. It's just the projectID and anon key. Just enable RLS in the db and you're fine
     {
         auth:{
-            persistSession: true,
+            storage: localStorage,
+            // persistSession: true,
             autoRefreshToken: true,
             detectSessionInUrl: true
         }
