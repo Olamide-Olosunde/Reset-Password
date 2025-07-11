@@ -265,3 +265,41 @@ async function resetPassword( passedPassword ) {
     alert('Password Changed successfully!');
     
 }
+
+function togglePasswordEye(){
+    const passwordEye = document.querySelectorAll('.passwordEye');
+    const passwordEyeSlashed = document.querySelectorAll('#passwordEyeSlash');
+    const password = document.querySelectorAll('.Password');
+
+    if( passwordEye[0].style.display !== 'none' )//when display === 'flex'
+    {
+        // passwordEye.style.display = 'none';
+        passwordEye.forEach(eye=>{
+            eye.style.display = 'none';
+        })
+
+        // passwordEyeSlashed.style.display = 'flex';
+        passwordEyeSlashed.forEach(eye=>{
+            eye.style.display = 'flex';
+        })
+
+        password.forEach(password=>{
+            password.type = "text";
+        })
+    } else
+    {
+        // passwordEye.style.display = 'flex';
+        passwordEye.forEach(eye=>{
+            eye.style.display = 'flex';
+        })
+
+        // passwordEyeSlashed.style.display = 'none';
+        passwordEyeSlashed.forEach(eye=>{
+            eye.style.display = 'none';
+        })
+
+        password.forEach(password=>{
+            password.type = "password";
+        })
+    }
+}

@@ -39,6 +39,11 @@ main > p{
     
 }
 
+@keyframes fadeOutIn {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
 button{
     background-color: var(--button-color);
     border-radius: 8px;
@@ -50,7 +55,7 @@ button{
     border-width: 0px;
 }
 button:active{
-    
+    animation: fadeOutIn 0.3s ease-in-out;
 }
 
 form{
@@ -58,7 +63,12 @@ form{
     flex-direction: column;
     width: 80%;
 }
-input{
+.passwordBox{
+    width: 100%;
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+
     margin-bottom: 10px;
     border-radius: 8px;
 
@@ -69,6 +79,32 @@ input{
     color: var(--text-color);
     background-color: var(--bg-color);
     height: 33.3px;
+}
+.passwordEye{
+    display: flex;
+    border-style: none;
+    width: 10%;
+
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+}
+#passwordEyeSlash{
+    display: none;
+}
+input{
+    width: 90%;
+    height: 90%;
+    margin-bottom: 10px;
+    border-radius: 8px;
+
+    border-width: 0.2px;
+    border-color: var(--text-color);
+    border-style: none;
+
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    /* height: 33.3px; */
 }
 input:focus{
     outline: none;
@@ -82,7 +118,6 @@ input:-webkit-autofill{
 }
 .error{
     border: 2px solid red;
-    /* font-size: 12pt; */
     display: none;
     
     background-color: lightcoral;
@@ -113,6 +148,22 @@ input:-webkit-autofill{
 a{
     color: var(--text-color);
     font-size: 16px;
+}
+
+@media only screen and (min-width: 700px){
+    main{
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (min-width: 1000px){
+    main{
+        width: 30%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 
