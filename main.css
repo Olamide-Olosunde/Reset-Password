@@ -63,7 +63,7 @@ form{
     flex-direction: column;
     width: 80%;
 }
-.passwordBox{
+.passwordBox, #email{/*put email there because it's basically the same setting*/
     width: 100%;
     border-style: solid;
     display: flex;
@@ -107,10 +107,10 @@ input{
     /* height: 33.3px; */
 }
 input:focus{
-    outline: none;
+  outline: none;
 }
 input::selection{
-    background-color: #CECECE;
+  background-color: #CECECE;
 }
 input:-webkit-autofill{
   -webkit-box-shadow: 0 0 0 1000px var(--bg-color) inset !important;
