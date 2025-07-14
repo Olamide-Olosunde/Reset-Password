@@ -6,105 +6,112 @@ sampleelement[data-theme="dark"] {
     color: var(--background-dark);
 }
 */
-
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 /* html */
 html{
-    background-color: var(--header-bg-color);
+  background-color: var(--header-bg-color);
 }
 
 /* body */
 body{
-    background-color: var(--bg-color);
-    color: var(--text-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
     
-    font-family: system-ui, -apple-system, sans-serif;
-    margin: 0px;
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0px;
 }
 /* /body */
 
 main{
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: center;
 
-    align-items: center;
+  align-items: center;
 }
 
 main > p{
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 25px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 25px;
     
 }
 
 @keyframes fadeOutIn {
-    0% { opacity: 1; }
-    50% { opacity: 0.2; }
-    100% { opacity: 1; }
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
 }
 button{
-    background-color: var(--button-color);
-    border-radius: 8px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: var(--text-color);
-    font-size: 13.3px;
+  background-color: var(--button-color);
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: var(--button-text-color);
+  font-size: 13.3px;
     
-    border-width: 0px;
+  border-width: 0px;
 }
 button:active{
-    animation: fadeOutIn 0.3s ease-in-out;
+  animation: fadeOutIn 0.3s ease-in-out;
 }
 
 form{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.Password{
+  box-sizing: inherit;
+  margin-top: 1px;/* it makes the placeholder text more centered for some reason */
 }
 .passwordBox, #email{/*put email there because it's basically the same setting*/
-    width: 100%;
-    border-style: solid;
-    display: flex;
-    flex-direction: row;
+  width: 100%;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: row;
 
-    margin-bottom: 10px;
-    border-radius: 8px;
+  margin-bottom: 10px;
+  border-radius: 8px;
 
-    border-width: 0.2px;
-    border-color: var(--text-color);
-    border-style: solid;
+  border-width: 0.2px;
+  border-color: var(--text-color);
+  border-style: solid;
 
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    height: 33.3px;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  height: 35px;
 }
 .passwordEye{
-    display: flex;
-    border-style: none;
-    width: 10%;
+  display: flex;
+  border-style: none;
+  width: 10%;
 
-    align-items: center;
-    justify-content: center;
-    color: var(--text-color);
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
 }
 #passwordEyeSlash{
-    display: none;
+  display: none;
 }
 input{
-    width: 90%;
-    height: 90%;
-    margin-bottom: 10px;
-    border-radius: 8px;
+  width: 90%;
+  height: 90%;
+  margin-bottom: 10px;
+  border-radius: 8px;
 
-    border-width: 0.2px;
-    border-color: var(--text-color);
-    border-style: none;
+  border-width: 0.2px;
+  border-color: var(--text-color);
+  border-style: none;
 
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    /* height: 33.3px; */
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 input:focus{
   outline: none;
@@ -117,85 +124,102 @@ input:-webkit-autofill{
   -webkit-text-fill-color: var(--text-color) !important;
 }
 .error{
-    border: 2px solid red;
-    display: none;
+  border: 2px solid red;
+  display: none;
     
-    background-color: lightcoral;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 10px 10px 10px;
-    margin-top: 0px;
-    font-size: 13.3px;
+  background-color: lightcoral;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+  margin-top: 0px;
+  font-size: 13.3px;
 }
 #emailError{
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .Password_Rules{
-    color: #4A4858;
-    font-size: 13.3px;
+  color: var(--pRules-color);
+  font-size: 13.3px;
+  margin-top: 0.8rem;
 }
 .Password_Rules > p{
-    margin-bottom: 0;
-    padding-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 #tabbed_Password_Rules{
-    list-style-type: none;
-    padding-top: 0;
-    margin-top: 0;
-    padding-left: 25px;
+  list-style-type: none;
+  padding-top: 0;
+  margin-top: 0;
+  padding-left: 25px;
+  margin-bottom: 0.8rem;
 }
 a{
-    color: var(--text-color);
-    font-size: 16px;
+  color: var(--text-color);
+  font-size: 16px;
+}
+header i{
+  position: absolute;
+  top: 3%;
+  right: 5%;
+  font-size: 20px;
 }
 
 @media only screen and (min-width: 700px){
-    main{
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+  main{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  header i{
+    font-size: 25px;
+  }
 }
 
 @media only screen and (min-width: 1000px){
-    main{
-        width: 30%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+  main{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  header i{
+    right: 3%;
+  }
 }
 
 
 /* root */
 :root {
-    --bg-color: #A6A6A8;
-    --header-bg-color: #A6A6A8;
-    --footer-bg-color: #A6A6A8;
-    --text-color: #272635;
-    --text-sec-color: #B1E5F2;
-    --navigator-bg-color: ;
-    
-    --navtitle-color: ;
-    --link-color: #B1E5F2;
-    --link-color-hover: #B1E5F2;
-    --shadow-color: #9a9999;
-    
-    --button-color: #B1E5F2;
+  --bg-color: #A6A6A8;
+  --header-bg-color: #A6A6A8;
+  --footer-bg-color: #A6A6A8;
+  --text-color: #272635;
+  --button-text-color: #272635;
+  --text-sec-color: #B1E5F2;
+  --navigator-bg-color: ;
+  
+  --navtitle-color: ;
+  --link-color: #B1E5F2;
+  --link-color-hover: #B1E5F2;
+  --shadow-color: #9a9999;
+  
+  --button-color: #B1E5F2;
+  --pRules-color: #4A4858;
 }
-/* [data-theme="dark"]{
-    --bg-color: #004f6d;
-    --header-bg-color: #0c3b57;
-    --footer-bg-color: #0c3b57;
-    --text-color: #ffffff;
-    --text-sec-color: #c7cdcf;
-    --navigator-bg-color: #FF9966;
+[data-theme="dark"]{
+  --bg-color: #272635;
+  --header-bg-color: #272635;
+  --footer-bg-color: #272635;
+  --text-color: #CECECE;
+  --button-text-color: #272635;
+  --text-sec-color: #B1E5F2;
+  --navigator-bg-color: ;
 
-    --navtitle-color: rgb(51, 143, 159);
-    --link-color: #ffffff;
-    --link-color-hover: #ffffff;
-    --header-link-color: #ffffff;
-    --shadow-color: #000000;
+  --navtitle-color: ;
+  --link-color: #B1E5F2;
+  --link-color-hover: #B1E5F2;
+  --shadow-color: #9a9999;
 
-    --button-color: linear-gradient(to right, #09405c, var(--bg-color) );
-} */
+  --button-color: #B1E5F2;
+  --pRules-color: #ABACAB;
+}
