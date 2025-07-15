@@ -4,9 +4,9 @@ const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 
 //use user's previously saved theme, else use their system default theme
 if( savedTheme )
 {
-    document.documentElement.setAttribute('data-theme', savedTheme);
+  document.documentElement.setAttribute('data-theme', savedTheme);
 } else{
-    document.documentElement.setAttribute('data-theme', systemTheme);
+  document.documentElement.setAttribute('data-theme', systemTheme);
 }
 
 var normal_sun = document.getElementById('normal-sun');
