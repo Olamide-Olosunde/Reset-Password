@@ -15,14 +15,14 @@ var normal_moon = document.getElementById('normal-moon');
 var normal_sun_display = window.getComputedStyle(normal_sun).display;
 var normal_moon_display = window.getComputedStyle(normal_moon).display;
 
-console.log(normal_moon_display)
-if (localStorage.getItem('theme') === 'dark') {
+
+if (document.documentElement.getAttribute('data-theme') === 'dark') {
   //if not mobile
   if (normal_moon_display != 'none') {//=== 'flex') {
     normal_moon.style.display = 'none';
     normal_sun.style.display = 'flex';
   }
-} else if (localStorage.getItem('theme') === 'light') {
+} else if (document.documentElement.getAttribute('data-theme') === 'light') {
   //if not mobile
   if (normal_sun_display != 'none') {//=== 'flex') {
     normal_sun.style.display = 'none';
