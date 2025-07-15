@@ -22,7 +22,8 @@ if (document.documentElement.getAttribute('data-theme') === 'dark') {
     normal_moon.style.display = 'none';
     normal_sun.style.display = 'flex';
   }
-} else if (document.documentElement.getAttribute('data-theme') === 'light') {
+// } else if (document.documentElement.getAttribute('data-theme') === 'light') {
+} else {
   //if not mobile
   if (normal_sun_display !== 'none') {//=== 'flex') {
     normal_sun.style.display = 'none';
