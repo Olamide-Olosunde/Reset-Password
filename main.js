@@ -18,13 +18,13 @@ var normal_moon_display = window.getComputedStyle(normal_moon).display;
 
 if (document.documentElement.getAttribute('data-theme') === 'dark') {
   //if not mobile
-  if (normal_moon_display != 'none') {//=== 'flex') {
+  if (normal_moon_display !== 'none') {//=== 'flex') {
     normal_moon.style.display = 'none';
     normal_sun.style.display = 'flex';
   }
 } else if (document.documentElement.getAttribute('data-theme') === 'light') {
   //if not mobile
-  if (normal_sun_display != 'none') {//=== 'flex') {
+  if (normal_sun_display !== 'none') {//=== 'flex') {
     normal_sun.style.display = 'none';
     normal_moon.style.display = 'flex';
   }
