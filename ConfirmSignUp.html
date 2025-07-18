@@ -10,8 +10,39 @@
     <link rel="icon" href="logo.ico">
 
     <script src="https://kit.fontawesome.com/7393c69ae7.js" crossorigin="anonymous"></script>
+
+    <script>
+      function celebrate() {
+        const duration = 2 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+        const interval = setInterval(() => {
+          const timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          confetti(Object.assign({}, defaults, {
+            particleCount: 50,
+            origin: { x: Math.random(), y: Math.random() - 0.2 }
+          }));
+        }, 250);
+      }
+
+      // Load confetti library (CDN)
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js";
+      document.head.appendChild(script);
+
+      // for( let i = 0; i < 3; i++ )
+      // {
+        celebrate();
+      // }
+    </script>
 </head>
-<body>
+<body onclick="celebrate()">
   <header>
     <i class="fa-solid fa-moon" id="normal-moon" onclick="toggle()"></i>
     <i class="fa-regular fa-sun" id="normal-sun" onclick="toggle()"></i>
